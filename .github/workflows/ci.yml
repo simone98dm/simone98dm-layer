@@ -1,14 +1,29 @@
 name: ci
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
 
 jobs:
+  # Squash merges use the PR title as the commit subject, and that subject is
+  # what decides the version bump on main. So the title has to be conventional.
+  pr-title:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check the PR title is a conventional commit
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          PATTERN='^(feat|fix|perf|refactor|docs|build|types|chore|test|style|ci|examples)(\([a-z0-9 ._/-]+\))?!?: .+'
+          if ! printf '%s' "$PR_TITLE" | grep -Eq "$PATTERN"; then
+            echo "::error::PR title \"$PR_TITLE\" is not a conventional commit." >&2
+            echo "Use for example 'feat: add AppHeader' (minor), 'fix(footer): wrong year' (patch)," >&2
+            echo "or 'feat!: drop AppFooter owner prop' (major)." >&2
+            exit 1
+          fi
+
   ci:
     runs-on: ubuntu-latest
 

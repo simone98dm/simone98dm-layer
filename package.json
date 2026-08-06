@@ -23,8 +23,7 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "test:types": "npm run dev:prepare && cd playground && vue-tsc --noEmit",
-    "release": "npm run lint && npm run test && changelogen --release --push"
+    "test:types": "npm run dev:prepare && cd playground && vue-tsc --noEmit"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^1.16.0",
