@@ -1,19 +1,11 @@
-<script setup lang="ts">
-const year = new Date().getFullYear()
-</script>
-
 <template>
   <footer class="app-footer">
     <slot>
       <div class="app-footer__content">
         Made with ❤️ by
-        <a
-          class="app-footer__link"
-          href="https://simone98dm.dev"
-        >
+        <a class="app-footer__link" href="https://simone98dm.dev">
           simone98dm
         </a>
-        <p>&copy; {{ year }}</p>
       </div>
     </slot>
   </footer>
