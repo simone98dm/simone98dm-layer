@@ -74,11 +74,27 @@ Add a new shared component as `app/components/<Name>.vue` — it is picked up au
 
 ## Release
 
-CI publishes on tag push, authenticating with the built-in `GITHUB_TOKEN` — no secrets to set up.
+Releases are automatic. Merge a PR into `main` and the `release` workflow bumps the version from
+the commits since the last tag, writes `CHANGELOG.md`, tags, and publishes to GitHub Packages. It
+authenticates with the built-in `GITHUB_TOKEN` — no secrets to set up.
 
-```bash
-npm run release   # lint + test, then changelogen bumps, tags and pushes
-```
+The bump comes from the conventional-commit type of the squashed PR title:
 
-The `release` workflow re-runs lint, typecheck, tests and the playground build, checks the tag
-matches `package.json`, then publishes. To publish by hand instead, tag with `vX.Y.Z` and push.
+| PR title            | Bump  | 1.0.0 becomes |
+| ------------------- | ----- | ------------- |
+| `feat: …`           | minor | 1.1.0         |
+| `fix: …`            | patch | 1.0.1         |
+| `perf: …`           | patch | 1.0.1         |
+| `refactor: …`       | patch | 1.0.1         |
+| `docs: …`           | patch | 1.0.1         |
+| `chore: …`          | patch | 1.0.1         |
+| `test:`/`ci:`/`style:` | patch | 1.0.1      |
+| `feat!: …` or `BREAKING CHANGE:` | major | 2.0.0 |
+
+A PR containing several types takes the highest bump. CI rejects a PR whose title is not a
+conventional commit, since that title is what the bump is read from.
+
+Bump, tag and publish all run in one job on purpose: GitHub does not trigger workflows for pushes
+made with `GITHUB_TOKEN`, so a tag pushed by CI would never start a separate publish workflow.
+
+Need a release without a PR? Run the `release` workflow manually from the Actions tab.
