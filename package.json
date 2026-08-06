@@ -1,0 +1,51 @@
+{
+  "name": "@simone98dm/layer",
+  "version": "1.0.0",
+  "description": "Shared Nuxt layer with common components",
+  "license": "MIT",
+  "type": "module",
+  "main": "./nuxt.config.ts",
+  "exports": {
+    ".": "./nuxt.config.ts",
+    "./app/*": "./app/*"
+  },
+  "files": [
+    "app",
+    "nuxt.config.ts"
+  ],
+  "workspaces": [
+    "playground"
+  ],
+  "scripts": {
+    "dev": "nuxt dev playground",
+    "dev:build": "nuxt build playground",
+    "dev:prepare": "nuxt prepare playground",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "test:types": "npm run dev:prepare && cd playground && vue-tsc --noEmit",
+    "release": "npm run lint && npm run test && changelogen --release --push"
+  },
+  "devDependencies": {
+    "@nuxt/eslint-config": "^1.16.0",
+    "@nuxt/test-utils": "^4.1.0",
+    "@types/node": "latest",
+    "changelogen": "^0.6.2",
+    "eslint": "^10.8.0",
+    "nuxt": "^4.5.1",
+    "typescript": "~6.0.3",
+    "vitest": "^4.1.10",
+    "vue-tsc": "^3.3.9"
+  },
+  "dependencies": {
+    "sass": "^1.102.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simone98dm/simone98dm-layer.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  }
+}

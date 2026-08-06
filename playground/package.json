@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "name": "simone98dm-layer-playground",
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "nuxt": "^4.5.1"
+  }
+}
