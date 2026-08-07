@@ -23,6 +23,7 @@
     padding: 1rem;
     text-align: center;
     font-size: 0.75rem;
+    font-family: "Plus Jakarta Sans", sans-serif;
     line-height: 1rem;
     color: var(--app-footer-ink-muted);
   }
@@ -31,7 +32,6 @@
     display: inline-flex;
     align-items: center;
     min-height: 48px;
-    padding-inline: 0.5rem;
     text-decoration: underline;
     text-underline-offset: 2px;
 
