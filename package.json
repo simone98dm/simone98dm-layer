@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^1.16.0",
+    "@nuxt/fonts": "^0.14.0",
     "@nuxt/test-utils": "^4.1.0",
     "@types/node": "latest",
     "changelogen": "^0.6.2",
