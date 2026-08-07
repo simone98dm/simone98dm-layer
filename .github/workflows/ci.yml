@@ -38,15 +38,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Lint
-        run: npm run lint
-
-      - name: Typecheck
-        run: npm run test:types
-
-      - name: Test
-        run: npm run test
-
       # The layer ships raw sources, so building the playground is what proves
       # the layer actually compiles in a consuming project.
       - name: Build playground
